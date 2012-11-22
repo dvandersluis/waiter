@@ -1,5 +1,4 @@
 require "menu_builder/version"
-
-module MenuBuilder
-  # Your code goes here...
-end
+require "menu_builder/menu"
+require "menu_builder/menu/builder"
+require "menu_builder/menu/drawer"
