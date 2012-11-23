@@ -1,4 +1,4 @@
-module MenuBuilder
+module Waiter
   class Menu
     # Builds a menu structure from the DSL
     class Builder

@@ -1,9 +1,9 @@
-module MenuBuilder
+module Waiter
   class Menu
     attr_accessor :options, :submenus
 
     class << self
-      def build(options = {})
+      def serve(options = {})
         yield Builder.new(obj = self.new(options))
         obj
       end

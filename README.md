@@ -1,12 +1,14 @@
-# Menu Builder
+# Waiter
 
-Provides a quick DSL building menus, without having to specify any HTML. Makes assumptions based on what's provided in the DSL so that the specification does not need to be unnecessarily verbose.
+Waiter serves up menus for your application:
+* Provides a quick DSL for building menus, without having to specify any HTML.
+* Makes assumptions based on what's provided in the DSL so that the specification does not need to be unnecessarily verbose.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
-    gem 'menu_builder'
+    gem 'waiter'
 
 And then execute:
 
@@ -14,7 +16,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install menu_builder
+    $ gem install waiter
 
 ## Usage
 
@@ -22,7 +24,7 @@ Or install it yourself as:
 
 To create a new menu:
 
-    MenuBuilder::Menu.build do |menu|
+    Waiter::Menu.serve do |menu|
       menu.file
       menu.edit
       menu.view
@@ -34,7 +36,7 @@ The above defines a menu with three items. By default, each item name (ie. "file
 Of course, there will be situations where the path may need to be explicitly specified. In this case, the `:controller`
 and `:action` options can be specified:
 
-    MenuBuilder::Menu.build do |menu|
+    Waiter::Menu.serve do |menu|
       menu.file :controller => 'documents', :action => 'show'
     end
 
@@ -44,7 +46,7 @@ no specific action is given, the menu item will be lit up for all actions within
 There may also be times where you need multiple controllers to light up the same menu item. This can be achieved by
 passing an array to the `:controllers` option:
 
-    MenuBuilder::Menu.build do |menu|
+    Waiter::Menu.serve do |menu|
       menu.file :controller => 'documents', :controllers => ['files', 'print', ... ]
     end
 
@@ -62,7 +64,7 @@ controller does not need to be specified unless it differs. As well, the menu it
 for the action within that controller, so action does not need to be specified unless it differs from the name.
 An id can also be specified if necessary (with the `:id` option).
 
-    MenuBuilder::Menu.build do |menu|
+    Waiter::Menu.serve do |menu|
       menu.file, :controllers => ['print'] do |file|
         file.new                            # Corresponds to FileController#new
         file.open :action => :read          # Corresponds to FileController#read
@@ -82,16 +84,16 @@ a menu or specified once the menu is defined by accessing the menu.options hash.
 
 `string_prefix`: Allows for a prefix for I18n strings to be specified.
 
-    MenuBuilder::Menu.build(:string_prefix => 'menu_') do |menu|
+    Waiter::Menu.serve(:string_prefix => 'menu_') do |menu|
       menu.file
     end
 
     # will use I18n.t(:menu_file) instead of I18n.t(:file)
 
-`selected`: Allows the selected menu item to be overrided, so a specified menu item can be lit up regardless of
+`selected`: Allows the selected menu item to be overridden, so a specified menu item can be lit up regardless of
 what the current controller/action is. This can be useful if there is an action that falls under different menu
 items depending on application context, or if there is a controller that may correspond to multiple menu items.
-A good way to acheive this would be to add a before_filter to set an instance variable which is then passed into
+A good way to achieve this would be to add a before_filter to set an instance variable which is then passed into
 the selected option.
 
     before_filter :set_current_menu
@@ -103,7 +105,7 @@ the selected option.
       end
     end
 
-    MenuBuilder::Menu.build(:selected => @current_menu) do |menu|
+    Waiter::Menu.serve(:selected => @current_menu) do |menu|
     end
 
 Note that the value passed to `:selected` should match the name of the menu item.
@@ -111,17 +113,17 @@ Note that the value passed to `:selected` should match the name of the menu item
 
 ### Drawing (outputting) a menu
 
-To draw a created menu, use the `MenuBuilder::Menu::Drawer` class. The class requires the current context to be
+To draw a created menu, use the `Waiter::Menu::Drawer` class. The class requires the current context to be
 passed in so that `ActionController` methods can be used. In general (ie. if the menu is being drawn from a helper)
 the context is self.
 
-    menu = MenuBuilder::Menu.build do |menu|
+    menu = Waiter::Menu.serve do |menu|
       # ...
     end
 
-    MenuBuilder::Menu::Drawer.new(menu, context).draw
+    Waiter::Menu::Drawer.new(menu, context).draw
 
-If a different `Drawer` is desired, `MenuBuilder::Menu::Drawer` can be subclassed and the methods `draw` and `draw_submenu` overridden to provide an alternate format.
+If a different `Drawer` is desired, `Waiter::Menu::Drawer` can be subclassed and the methods `draw` and `draw_submenu` overridden to provide an alternate format.
 
 ## Contributing
 

@@ -1,4 +1,4 @@
-module MenuBuilder
+module Waiter
   class Menu
     # Outputs a Menu into HTML
     class Drawer
