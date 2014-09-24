@@ -67,7 +67,7 @@ module Waiter
 
         if wildcard_controllers.any?
           return true if wildcard_controllers.any? do |c|
-            r = Regexp.new(c.sub(%r{/\*$}, '(/*)?').gsub('*', '.*'))
+            r = Regexp.new('\A' + c.sub(%r{/\*\Z}, '(/*)?').gsub('*', '.*'))
             r =~ current_controller
           end
         end

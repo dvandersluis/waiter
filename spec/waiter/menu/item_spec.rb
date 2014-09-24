@@ -89,6 +89,12 @@ RSpec.describe Waiter::Menu::Item do
       expect(subject).to_not be_selected
     end
 
+    it "should return false if the controller doesn't match a wildcard from the start" do
+      @controller = 'foo/bar'
+      @controllers = %w(bar/*)
+      expect(subject).to_not be_selected
+    end
+
     context 'when a selected item is specified' do
       subject { described_class.new(parent, :item1, nil, selected: :foo) }
 
