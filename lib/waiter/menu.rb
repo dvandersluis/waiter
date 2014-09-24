@@ -3,6 +3,7 @@ require 'waiter/menu/item_list'
 require 'waiter/menu/item'
 require 'waiter/menu/section'
 require 'waiter/menu/drawer'
+require 'active_support/core_ext/hash/slice'
 
 module Waiter
   class Menu
@@ -50,11 +51,7 @@ module Waiter
 
     def items(sorted = false)
       return @items unless sorted
-
-      items = @items.dup
-      items.sort_by!(&options[:sort].to_sym) if options.fetch(:sort, false)
-      items.reverse! if options.fetch(:reverse, false)
-      ItemList.new(items)
+      ItemList.new(@items, options.slice(:sort, :reverse))
     end
 
     def top?
