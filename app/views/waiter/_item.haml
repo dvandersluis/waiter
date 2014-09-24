@@ -1,0 +1,8 @@
+.top-item{ class: item.selected? ? 'selected' : '' }
+  - if item.path
+    = link_to item.menu_title, item.path
+  - else
+    = item.menu_title
+
+  - if item.submenu?
+    = render 'waiter/submenu', parent: item, items: item.submenu.items(true)

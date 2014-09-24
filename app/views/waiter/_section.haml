@@ -1,0 +1,5 @@
+- section.items.each do |subitem|
+  = render 'waiter/sub_item', item: item, subitem: subitem
+
+- unless last
+  %li.separator

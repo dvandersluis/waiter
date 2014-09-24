@@ -18,4 +18,8 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
 
   gem.add_dependency "activesupport", "> 3.0.0"
+  gem.add_dependency "haml"
+  gem.add_development_dependency "rspec", ">= 3.1.0"
+  gem.add_development_dependency "rspec-its"
+  gem.add_development_dependency "rake"
 end

@@ -1,0 +1,6 @@
+%ul.submenu
+  - items.each.with_index do |subitem, idx|
+    - if subitem.section?
+      = render 'waiter/section', item: parent, section: subitem, last: idx == items.count - 1
+    - else
+      = render 'waiter/sub_item', item: parent, subitem: subitem

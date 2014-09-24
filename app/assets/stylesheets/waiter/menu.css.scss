@@ -1,0 +1,129 @@
+/*
+ * Menu bar
+ */
+.waiter-menu
+{
+  width: 100%;
+  display: block;
+  height: 40px;
+  border: 0px;
+  background: image-url('waiter/bg.gif') repeat-x left top;
+
+  div.top-item
+  {
+    float: left;
+    position: relative;
+    top: 10px;
+    height: 20px;
+    min-width: 80px;
+    border-right: 1px solid #e6e9ef;
+    border-left: 0;
+    margin: 0;
+    text-align: center;
+    /* Fix IE7 z-index bug - See http://brenelz.com/blog/squish-the-internet-explorer-z-index-bug/ */
+    z-index: 10501;
+    color: #e6e9ef;
+    font-family: "Arial";
+    font-weight: bold;
+    font-size: 14px;
+    padding: 5px 15px 5px 10px;
+    cursor: default;
+
+    a
+    {
+      color: #FFF;
+      display: block;
+      height: 20px;
+      min-width: 80px;
+      text-decoration: none;
+    }
+
+    &:hover, &.selected
+    {
+      color: #FFF;
+      background: image-url('waiter/selected-bg.gif') repeat-x left top;
+    }
+
+    $submenu-border-color: #888;
+    $submenu-item-border-color: #CCC;
+    $submenu-item-height: 20px;
+
+    ul.submenu
+    {
+      position: absolute;
+      top: 30px;
+      left: 0;
+      background-color: #ffffff;
+      display: none;
+      z-index: 10500;
+      margin: 0;
+      padding: 0;
+      border: 2px solid $submenu-border-color;
+
+      li
+      {
+        list-style-type: none;
+        min-height: $submenu-item-height;
+        line-height: $submenu-item-height;
+        vertical-align: middle;
+        background-color: #e6e9ef;
+        border-top: 1px solid $submenu-item-border-color;
+        min-width: 150px;
+        text-align: left;
+        white-space: nowrap;
+        color: #000000;
+        border-collapse: collapse;
+
+        font-family: "Arial";
+        font-weight: normal;
+        font-size: 12px;
+        white-space: nowrap;
+
+        a, a:hover
+        {
+          color: #000000;
+          font-weight: normal;
+          padding-left: 8px;
+          padding-right: 8px;
+          line-height: $submenu-item-height + 12px;
+          height: $submenu-item-height + 12px;
+        }
+
+        &:first-child
+        {
+          border-top: 0;
+        }
+
+        &:hover
+        {
+          background-color: #ff9900;
+        }
+
+        &.separator
+        {
+          min-height: 0;
+          max-height: 0;
+          padding: 0;
+          border: 0;
+        }
+      }
+
+      li.separator + li
+      {
+        border-top: 2px solid $submenu-border-color;
+      }
+
+      li.separator + li.separator
+      {
+        display: none;
+      }
+    }
+
+    &:hover ul.submenu
+    {
+      background-color: #333333;
+      /*border:1px solid #333333;*/
+      display: block;
+    }
+  }
+}
