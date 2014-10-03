@@ -36,6 +36,11 @@
       height: 20px;
       min-width: 80px;
       text-decoration: none;
+
+      &.noclick
+      {
+        cursor: default;
+      }
     }
 
     &:hover, &.selected
