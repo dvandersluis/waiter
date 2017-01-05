@@ -23,7 +23,6 @@
     /* Fix IE7 z-index bug - See http://brenelz.com/blog/squish-the-internet-explorer-z-index-bug/ */
     z-index: 10501;
     color: #e6e9ef;
-    font-family: "Arial";
     font-weight: bold;
     font-size: 14px;
     padding: 5px 15px 5px 10px;
@@ -79,10 +78,8 @@
         color: #000000;
         border-collapse: collapse;
 
-        font-family: "Arial";
         font-weight: normal;
         font-size: 12px;
-        white-space: nowrap;
 
         a, a:hover
         {
