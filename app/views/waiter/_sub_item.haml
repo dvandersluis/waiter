@@ -1,2 +1,6 @@
-%li
-  = link_to subitem.item_title, subitem.path
+- if subitem.column?
+  = render 'waiter/column', parent: parent, column: subitem
+- elsif subitem.section?
+  = render 'waiter/section', item: parent, section: subitem, last: idx == count - 1
+- else
+  = render 'waiter/submenu_item', item: parent, subitem: subitem

@@ -1,0 +1,7 @@
+.column
+  - if column.heading
+    %li.heading= column.heading
+
+  - count = column.items.count
+  - column.items(true).each.with_index do |subitem, idx|
+    = render 'waiter/sub_item', parent: parent, subitem: subitem, idx: idx, count: count

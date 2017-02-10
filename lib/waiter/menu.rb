@@ -2,6 +2,7 @@ require 'waiter/dsl'
 require 'waiter/menu/item_list'
 require 'waiter/menu/item'
 require 'waiter/menu/section'
+require 'waiter/menu/column'
 require 'waiter/menu/drawer'
 require 'active_support/core_ext/hash/slice'
 
@@ -38,7 +39,12 @@ module Waiter
 
     def add_section(options = {}, &block)
       section = Section.new(self, options, &block)
-      items << section if section.items.any?
+      items << section unless section.empty?
+    end
+
+    def add_column(options = {}, &block)
+      column = Column.new(self, options, &block)
+      items << column unless column.empty?
     end
 
     def sections

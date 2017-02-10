@@ -18,7 +18,8 @@ module Waiter
         render partial: 'waiter/menu_bar', locals: { menu: menu }
       end
 
-      protected
+    protected
+
       def menu_selected?(name, controller, action = nil, controllers = [])
         controllers = [] unless controllers
 

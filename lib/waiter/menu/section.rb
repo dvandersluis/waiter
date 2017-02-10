@@ -11,6 +11,10 @@ module Waiter
         true
       end
 
+      def heading
+        options[:heading]
+      end
+
       def items(sorted = false)
         return super() unless sorted
         ItemList.new(super(), options.slice(:sort, :reverse))

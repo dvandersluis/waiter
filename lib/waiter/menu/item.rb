@@ -31,8 +31,16 @@ module Waiter
         false
       end
 
+      def column?
+        false
+      end
+
       def items
         @submenu.try(:items) || []
+      end
+
+      def empty?
+        items.empty?
       end
 
       def [](name)

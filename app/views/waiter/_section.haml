@@ -1,5 +1,6 @@
-- section.items(true).each do |subitem|
-  = render 'waiter/sub_item', item: item, subitem: subitem
+.section
+  - if section.heading
+    %li.heading= section.heading
 
-- unless last
-  %li.separator
+  - section.items(true).each do |subitem|
+    = render 'waiter/submenu_item', item: item, subitem: subitem

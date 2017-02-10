@@ -51,18 +51,45 @@
     $submenu-border-color: #888;
     $submenu-item-border-color: #CCC;
     $submenu-item-height: 20px;
+    $submenu-item-bgcolor: #E6E9EF;
+    $submenu-item-hover: #006EB6;
 
     ul.submenu
     {
       position: absolute;
       top: 30px;
       left: 0;
-      background-color: #ffffff;
+      background-color: $submenu-item-bgcolor;
       display: none;
       z-index: 10500;
       margin: 0;
       padding: 0;
       border: 2px solid $submenu-border-color;
+      border-collapse: collapse;
+
+      div.column
+      {
+        border: 2px solid $submenu-border-color;
+        border-collapse: collapse;
+      }
+
+      div.section
+      {
+        & + div.section
+        {
+          border-top: 2px solid $submenu-border-color;
+        }
+
+        li:last-of-type
+        {
+          border-bottom: none;
+        }
+      }
+
+      div.column
+      {
+        display: table-cell;
+      }
 
       li
       {
@@ -70,20 +97,19 @@
         min-height: $submenu-item-height;
         line-height: $submenu-item-height;
         vertical-align: middle;
-        background-color: #e6e9ef;
-        border-top: 1px solid $submenu-item-border-color;
+        background-color: $submenu-item-bgcolor;
+        border-bottom: 1px solid $submenu-item-border-color;
         min-width: 150px;
         text-align: left;
         white-space: nowrap;
-        color: #000000;
+        color: #000;
         border-collapse: collapse;
-
         font-weight: normal;
         font-size: 12px;
 
-        a, a:hover
+        a, a:hover, &.heading
         {
-          color: #000000;
+          color: inherit;
           font-weight: normal;
           padding-left: 8px;
           padding-right: 8px;
@@ -91,14 +117,22 @@
           height: $submenu-item-height + 12px;
         }
 
+        &.heading
+        {
+          font-weight: bold;
+          font-size: 14px;
+          color: #000;
+        }
+
         &:first-child
         {
           border-top: 0;
         }
 
-        &:hover
+        &:not(.heading):hover
         {
-          background-color: #ff9900;
+          background-color: $submenu-item-hover;
+          color: white;
         }
 
         &.separator
@@ -123,9 +157,7 @@
 
     &:hover ul.submenu
     {
-      background-color: #333333;
-      /*border:1px solid #333333;*/
-      display: block;
+      display: table;
     }
   }
 }

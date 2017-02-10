@@ -6,6 +6,10 @@ module Waiter
       add_section(options, &block)
     end
 
+    def column(options = {}, &block)
+      add_column(options, &block)
+    end
+
     def method_missing(name, *args, &block)
       return context.send(name, *args, &block) if context.respond_to?(name)
 
